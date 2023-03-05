@@ -1,7 +1,9 @@
+local M = {}
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
+local wk = require("which-key")
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -63,8 +65,41 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+M.set_hop_keymaps = function()
+  local opts = { noremap = true, silent = true }
+  keymap("", "S", "<cmd>HopChar2MW<cr>", opts)
+  keymap("", "s", "<cmd>HopWordMW<cr>", opts)
+  -- keymap("", "L", "<cmd>HopLineMW<cr>", opts)
+  keymap("", "t",
+    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
+    , {})
+  keymap("", "T",
+    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
+    , {})
+
+  local modes = {"n", "o"}
+  for _,mode in ipairs(modes) do 
+    keymap(mode, "f",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+      , {})
+    keymap(mode, "F",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+      , {})
+  end
+end
+
+M.set_rust_keymaps = function()
+  local opts = { noremap = true }
+  wk.register({
+  ["<leader>l"] = {
+    A = { "<cmd>RustCodeAction<cr>", "Code Action" },
+    R = { "<cmd>RustRunnables<cr>", "Rust Runnables" },
+  },
+}, opts)
+end
+return M
