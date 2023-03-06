@@ -87,60 +87,60 @@ return packer.startup(function(use)
 
   -- Git
   use { "lewis6991/gitsigns.nvim" }
-
-  use {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      require("user.rust-tools").config()
-    end,
-    ft = { "rust", "rs" },
-  }
-  use {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require("user.dapui").config()
-    end,
-    ft = { "c", "cpp", "python", "rust", "go" },
-    event = "BufReadPost",
-    requires = { "mfussenegger/nvim-dap" },
-    -- disable = not lvim.builtin.dap.active,
-  }
-  use {
-    "phaazon/hop.nvim",
-    event = "BufRead",
-    config = function()
-      require("user.hop").config()
-    end,
-  }
-  use { "tpope/vim-surround" }
-  use {
-    "tpope/vim-fugitive",
-    cmd = {
-      "G",
-      "Git",
-      "Gdiffsplit",
-      "Gread",
-      "Gwrite",
-      "Ggrep",
-      "GMove",
-      "GDelete",
-      "GBrowse",
-      "GRemove",
-      "GRename",
-      "Glgrep",
-      "Gedit"
-    },
-    ft = { "fugitive" }
-  }
-  use { "tpope/vim-repeat" }
-  use { "p00f/nvim-ts-rainbow" }
-  use {
-    "RishabhRD/nvim-cheat.sh",
-    requires = "RishabhRD/popfix",
-    config = function()
-      vim.g.cheat_default_window_layout = "vertical_split"
-    end,
-  }
+    use {
+      "simrat39/rust-tools.nvim",
+      config = function()
+        require("user.rust-tools").config()
+      end,
+      ft = { "rust", "rs" },
+    }
+    use {
+      "rcarriga/nvim-dap-ui",
+      config = function()
+        require("user.dapui").config()
+      end,
+      ft = { "c", "cpp", "python", "rust", "go" },
+      event = "BufReadPost",
+      requires = { "mfussenegger/nvim-dap" },
+    }
+    use {
+      "phaazon/hop.nvim",
+      event = "BufRead",
+      config = function()
+        require("user.hop").config()
+      end,
+    }
+    use { "tpope/vim-surround" }
+    use {
+      "tpope/vim-fugitive",
+      cmd = {
+        "G",
+        "Git",
+        "Gdiffsplit",
+        "Gread",
+        "Gwrite",
+        "Ggrep",
+        "GMove",
+        "GDelete",
+        "GBrowse",
+        "GRemove",
+        "GRename",
+        "Glgrep",
+        "Gedit"
+      },
+      ft = { "fugitive" }
+    }
+    use { "tpope/vim-repeat" }
+    use { "p00f/nvim-ts-rainbow" }
+    use {
+      "RishabhRD/nvim-cheat.sh",
+      requires = "RishabhRD/popfix",
+      config = function()
+        vim.g.cheat_default_window_layout = "vertical_split"
+      end,
+    }
+  use {"romainl/apprentice"}
+  use {"AlessandroYorba/Alduin"}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
