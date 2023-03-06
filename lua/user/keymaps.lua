@@ -42,7 +42,7 @@ keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Insert --
--- Press jk fast to exit insert mode 
+-- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
@@ -82,8 +82,8 @@ M.set_hop_keymaps = function()
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
     , {})
 
-  local modes = {"n", "o"}
-  for _,mode in ipairs(modes) do 
+  local modes = { "n", "o" }
+  for _, mode in ipairs(modes) do
     keymap(mode, "f",
       "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
       , {})
@@ -94,12 +94,16 @@ M.set_hop_keymaps = function()
 end
 
 M.set_rust_keymaps = function()
-  local opts = { noremap = true }
+  local opts = { noremap = true, buffer = 0 }
   wk.register({
-  ["<leader>l"] = {
-    A = { "<cmd>RustCodeAction<cr>", "Code Action" },
-    R = { "<cmd>RustRunnables<cr>", "Rust Runnables" },
-  },
-}, opts)
+        ["<leader>l"] = {
+      a = { "<cmd>RustCodeAction<cr>", "Code Action" },
+      R = { "<cmd>RustRunnables<cr>", "Rust Runnables" },
+      m = { "<Cmd>RustExpandMacro<CR>", "Rust Expand Macro" },
+      h = { "<Cmd>RustHoverActions<CR>", "Rust Hover Actions" },
+      c = { "<Cmd>RustOpenCargo<CR>", "Open Cargo" },
+      -- H = { "<Cmd>RustToggleInlayHints<CR>", "Rust Toggle Inlay Hints" },
+    },
+  }, opts)
 end
 return M
