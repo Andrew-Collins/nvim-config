@@ -25,7 +25,7 @@ M.setup = function()
   local config = {
     virtual_text = false, -- disable virtual text
     signs = {
-      active = signs,     -- show signs
+      active = signs, -- show signs
     },
     update_in_insert = true,
     underline = true,
@@ -96,11 +96,11 @@ local function lsp_keymaps(bufnr)
       i = { "<cmd>LspInfo<cr>", "Info" },
       I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
       j = {
-        "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+        "<cmd>lua vim.diagnostic.goto_next()<CR>",
         "Next Diagnostic",
       },
       k = {
-        "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+        "<cmd>lua vim.diagnostic.goto_prev()<cr>",
         "Prev Diagnostic",
       },
       l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },

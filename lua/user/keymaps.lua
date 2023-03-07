@@ -70,7 +70,7 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-M.set_dap_keymaps = function ()
+M.set_dap_keymaps = function()
   local opts = { prefix = "<leader>", nowait = true }
   wk.register({
     ["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" },
@@ -84,18 +84,18 @@ M.set_dap_keymaps = function ()
       s = { "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustDebuggables]] else require'dap'.continue() end<CR>", "Start" },
     },
   }, opts)
-    -- lvim.builtin.which_key.mappings["dB"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-    --   "Set Breakpoint" }
-    -- lvim.builtin.which_key.mappings["dl"] = { "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
-    --   "Log Point" }
-    -- lvim.builtin.which_key.mappings["dE"] = { "<cmd>lua require('dap').set_exception_breakpoints()<cr>",
-    --   "Break Exceptions" }
-    -- lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
-    -- lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
-    -- lvim.builtin.which_key.mappings["ds"] = {
-    --   "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustDebuggables]] else require'dap'.continue() end<CR>",
-    --   "Start"
-    -- }
+  -- lvim.builtin.which_key.mappings["dB"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+  --   "Set Breakpoint" }
+  -- lvim.builtin.which_key.mappings["dl"] = { "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
+  --   "Log Point" }
+  -- lvim.builtin.which_key.mappings["dE"] = { "<cmd>lua require('dap').set_exception_breakpoints()<cr>",
+  --   "Break Exceptions" }
+  -- lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
+  -- lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
+  -- lvim.builtin.which_key.mappings["ds"] = {
+  --   "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustDebuggables]] else require'dap'.continue() end<CR>",
+  --   "Start"
+  -- }
 end
 
 M.set_hop_keymaps = function()
@@ -124,8 +124,8 @@ end
 M.set_rust_keymaps = function()
   local opts = { noremap = true, buffer = 0 }
   wk.register({
-        ["<leader>l"] = {
-      a = { "<cmd>RustCodeAction<cr>", "Code Action" },
+    ["<leader>l"] = {
+      -- a = { "<cmd>RustCodeAction<cr>", "Code Action" },
       R = { "<cmd>RustRunnables<cr>", "Rust Runnables" },
       m = { "<Cmd>RustExpandMacro<CR>", "Rust Expand Macro" },
       h = { "<Cmd>RustHoverActions<CR>", "Rust Hover Actions" },
