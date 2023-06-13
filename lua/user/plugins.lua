@@ -42,24 +42,46 @@ packer.init({
 return packer.startup(function(use)
   use { "wbthomason/packer.nvim" } -- Have packer manage itself
   use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used by lots of plugins
-  use { "windwp/nvim-autopairs" }  -- Autopairs, integrates with both cmp and treesitter
-  use { "numToStr/Comment.nvim" }
+  use { "windwp/nvim-autopairs", config = function()
+    require("user.autopairs").config()
+  end } -- Autopairs, integrates with both cmp and treesitter
+  use { "numToStr/Comment.nvim", config = function()
+    require("user.comment").config()
+  end }
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
-  use { "kyazdani42/nvim-web-devicons" }
-  use { "kyazdani42/nvim-tree.lua" }
-  use { "akinsho/bufferline.nvim" }
+  use { "nvim-tree/nvim-web-devicons" }
+  use { "nvim-tree/nvim-tree.lua", config = function()
+    require("user.nvim-tree").config()
+  end }
+  use { "akinsho/bufferline.nvim", config = function()
+    require("user.bufferline").config()
+  end }
   use { "moll/vim-bbye" }
-  use { "nvim-lualine/lualine.nvim" }
-  use { "akinsho/toggleterm.nvim" }
-  use { "ahmedkhalf/project.nvim" }
-  use { "lewis6991/impatient.nvim" }
-  use { "lukas-reineke/indent-blankline.nvim" }
-  use { "goolord/alpha-nvim" }
+  use { "nvim-lualine/lualine.nvim", config = function()
+    require("user.lualine").config()
+  end }
+  use { "akinsho/toggleterm.nvim", config = function()
+    require("user.toggleterm").config()
+  end }
+  use { "ahmedkhalf/project.nvim", config = function()
+    require("user.project").config()
+  end }
+  use { "lewis6991/impatient.nvim", config = function()
+    require("impatient").enable_profile()
+  end }
+  use { "lukas-reineke/indent-blankline.nvim", config = function()
+    require("user.indentline").config()
+  end }
+  use { "goolord/alpha-nvim", config = function()
+    require("user.alpha").config()
+  end }
   use { "folke/which-key.nvim" }
 
   -- Colorschemes
-  use { "folke/tokyonight.nvim" }
+  -- use { "folke/tokyonight.nvim" }
   use { "martinsione/darkplus.nvim" }
+  -- use { "romainl/apprentice" }
+  -- use { "AlessandroYorba/Alduin" }
 
   -- Cmp
   use { "hrsh7th/nvim-cmp" }         -- The completion plugin
@@ -81,12 +103,18 @@ return packer.startup(function(use)
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim" }
+  use { "junegunn/fzf", run = './install --bin' }
+  use { "ibhagwan/fzf-lua", requires = { 'nvim-tree/nvim-web-devicons' } }
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter" }
+  use { "nvim-treesitter/nvim-treesitter", config = function()
+    require("user.treesitter").config()
+  end }
 
   -- Git
-  use { "lewis6991/gitsigns.nvim" }
+  use { "lewis6991/gitsigns.nvim", config = function()
+    require("user.gitsigns").config()
+  end }
   use {
     "simrat39/rust-tools.nvim",
     config = function()
@@ -113,7 +141,7 @@ return packer.startup(function(use)
   use { "kylechui/nvim-surround", tag = "*", config = function()
     require("nvim-surround").setup({
       aliases = {
-        ["<"] = "t",
+            ["<"] = "t",
       },
     })
   end
@@ -139,15 +167,23 @@ return packer.startup(function(use)
   }
   use { "tpope/vim-repeat" }
   use { "p00f/nvim-ts-rainbow" }
-  use {
-    "RishabhRD/nvim-cheat.sh",
-    requires = "RishabhRD/popfix",
-    config = function()
-      vim.g.cheat_default_window_layout = "vertical_split"
-    end,
-  }
-  use { "romainl/apprentice" }
-  use { "AlessandroYorba/Alduin" }
+
+  use { "nvim-treesitter/nvim-treesitter-context", config = function()
+    require("treesitter-context").setup({
+      enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
+      max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
+      min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+      line_numbers = true,
+      multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
+      trim_scope = "outer",     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+      mode = "cursor",          -- Line used to calculate context. Choices: 'cursor', 'topline'
+      -- Separator between context and content. Should be a single character string, like '-'.
+      -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+      separator = nil,
+      zindex = 20,     -- The Z-index of the context window
+      on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+    })
+  end }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -25,7 +25,7 @@ M.setup = function()
   local config = {
     virtual_text = false, -- disable virtual text
     signs = {
-      active = signs, -- show signs
+      active = signs,     -- show signs
     },
     update_in_insert = true,
     underline = true,
@@ -57,7 +57,7 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
   local wk = require("which-key")
-  local opts = { nowait = true, buffer = buffnr, prefix = "g" }
+  opts = { nowait = true, buffer = buffnr, prefix = "g" }
 
   wk.register({
     D = {

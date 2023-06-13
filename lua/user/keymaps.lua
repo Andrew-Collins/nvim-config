@@ -52,8 +52,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
@@ -63,17 +63,10 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
--- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
 M.set_dap_keymaps = function()
   local opts = { prefix = "<leader>", nowait = true }
   wk.register({
-    ["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" },
+        ["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" },
     d = {
       name = "+DAP",
       B = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Set Breakpoint" },
@@ -125,7 +118,7 @@ end
 M.set_rust_keymaps = function()
   local opts = { noremap = true, buffer = 0 }
   wk.register({
-    ["<leader>l"] = {
+        ["<leader>l"] = {
       -- a = { "<cmd>RustCodeAction<cr>", "Code Action" },
       R = { "<cmd>RustRunnables<cr>", "Rust Runnables" },
       m = { "<Cmd>RustExpandMacro<CR>", "Rust Expand Macro" },
