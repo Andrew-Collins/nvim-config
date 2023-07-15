@@ -6,12 +6,11 @@ M.config = function()
   end
 
   configs.setup({
-    ensure_installed = { "bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "java",
-      "yaml", "markdown", "markdown_inline" },                                                                                                                  -- one of "all" or a list of languages
-    ignore_install = { "phpdoc" },                                                                                                                              -- List of parsers to ignore installing
+    ensure_installed = { "bash", "fish", "c", "json", "lua", "python", "rust", "yaml", "markdown", "markdown_inline" }, -- one of "all" or a list of languages
+    ignore_install = { "phpdoc" },                                                                                      -- List of parsers to ignore installing
     highlight = {
-      enable = true,                                                                                                                                            -- false will disable the whole extension
-      disable = { "css" },                                                                                                                                      -- list of language that will be disabled
+      enable = true,                                                                                                    -- false will disable the whole extension
+      disable = { "css" },                                                                                              -- list of language that will be disabled
     },
     autopairs = {
       enable = true,

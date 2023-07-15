@@ -48,14 +48,34 @@ return packer.startup(function(use)
   use { "numToStr/Comment.nvim", config = function()
     require("user.comment").config()
   end }
-  use { "JoosepAlviste/nvim-ts-context-commentstring" }
-  use { "nvim-tree/nvim-web-devicons" }
+  use { "nvim-tree/nvim-web-devicons", requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("nvim-web-devicons").setup({
+        default = true,
+        strict = true,
+        override_by_filename = {
+              [".gitignore"] = {
+            icon = "",
+            color = "#f1502f",
+            name = "Gitignore"
+          }
+        },
+        override_by_extension = {
+              ["log"] = {
+            icon = "",
+            color = "#81e043",
+            name = "Log"
+          }
+        },
+      })
+    end }
   use { "nvim-tree/nvim-tree.lua", config = function()
     require("user.nvim-tree").config()
   end }
-  use { "akinsho/bufferline.nvim", config = function()
-    require("user.bufferline").config()
-  end }
+  use { "akinsho/bufferline.nvim",
+    config = function()
+      require("user.bufferline").config()
+    end }
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim", config = function()
     require("user.lualine").config()
@@ -72,9 +92,11 @@ return packer.startup(function(use)
   use { "lukas-reineke/indent-blankline.nvim", config = function()
     require("user.indentline").config()
   end }
-  use { "goolord/alpha-nvim", config = function()
-    require("user.alpha").config()
-  end }
+  use { "goolord/alpha-nvim",
+    config = function()
+      require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+    end }
+  use { "christoomey/vim-tmux-navigator" }
   use { "folke/which-key.nvim" }
 
   -- Colorschemes
@@ -99,7 +121,6 @@ return packer.startup(function(use)
   use { "neovim/nvim-lspconfig" }   -- enable LSP
   use { "williamboman/mason.nvim" } -- simple to use language server installer
   use { "williamboman/mason-lspconfig.nvim" }
-  use { "RRethy/vim-illuminate" }
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim" }
@@ -166,7 +187,7 @@ return packer.startup(function(use)
     ft = { "fugitive" }
   }
   use { "tpope/vim-repeat" }
-  use { "p00f/nvim-ts-rainbow" }
+  -- use { "p00f/nvim-ts-rainbow" }
 
   use { "nvim-treesitter/nvim-treesitter-context", config = function()
     require("treesitter-context").setup({

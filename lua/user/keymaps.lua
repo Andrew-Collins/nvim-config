@@ -22,53 +22,27 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
 
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", opts)
+keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", opts)
+keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", opts)
+keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
-
--- Insert --
--- Press jk fast to exit insert mode
--- keymap("i", "jk", "<ESC>", opts)
--- keymap("i", "kj", "<ESC>", opts)
-
--- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
-
--- Move text up and down
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
-
--- Visual Block --
--- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-
 M.set_dap_keymaps = function()
   local opts = { prefix = "<leader>", nowait = true }
   wk.register({
-        ["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" },
+    ["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" },
     d = {
       name = "+DAP",
+      b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Set Breakpoint" },
       B = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Set Breakpoint" },
       l = { "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>", "Log Point" },
       E = { "<cmd>lua require('dap').set_exception_breakpoints()<cr>", "Break Exceptions" },
@@ -78,18 +52,6 @@ M.set_dap_keymaps = function()
         "Start" },
     },
   }, opts)
-  -- lvim.builtin.which_key.mappings["dB"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-  --   "Set Breakpoint" }
-  -- lvim.builtin.which_key.mappings["dl"] = { "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
-  --   "Log Point" }
-  -- lvim.builtin.which_key.mappings["dE"] = { "<cmd>lua require('dap').set_exception_breakpoints()<cr>",
-  --   "Break Exceptions" }
-  -- lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
-  -- lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
-  -- lvim.builtin.which_key.mappings["ds"] = {
-  --   "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustDebuggables]] else require'dap'.continue() end<CR>",
-  --   "Start"
-  -- }
 end
 
 M.set_hop_keymaps = function()
@@ -118,7 +80,7 @@ end
 M.set_rust_keymaps = function()
   local opts = { noremap = true, buffer = 0 }
   wk.register({
-        ["<leader>l"] = {
+    ["<leader>l"] = {
       -- a = { "<cmd>RustCodeAction<cr>", "Code Action" },
       R = { "<cmd>RustRunnables<cr>", "Rust Runnables" },
       m = { "<Cmd>RustExpandMacro<CR>", "Rust Expand Macro" },
