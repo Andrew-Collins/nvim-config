@@ -42,7 +42,11 @@ M.set_dap_keymaps = function()
     ["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" },
     d = {
       name = "+DAP",
-      b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Set Breakpoint" },
+      b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+      c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+      o = { "<cmd>lua require('dap').step_over()<cr>", "Step Over" },
+      i = { "<cmd>lua require('dap').step_into()<cr>", "Step Into" },
+      O = { "<cmd>lua require('dap').step_out()<cr>", "Step Out" },
       B = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Set Breakpoint" },
       l = { "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>", "Log Point" },
       E = { "<cmd>lua require('dap').set_exception_breakpoints()<cr>", "Break Exceptions" },
@@ -50,6 +54,7 @@ M.set_dap_keymaps = function()
       U = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" },
       s = { "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustDebuggables]] else require'dap'.continue() end<CR>",
         "Start" },
+      R = { "<cmd>lua require('dap').run_last()<cr>", "Run Last" },
     },
   }, opts)
 end
