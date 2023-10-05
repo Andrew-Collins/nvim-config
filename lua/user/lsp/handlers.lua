@@ -14,7 +14,7 @@ M.setup = function()
 
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
+    { name = "DiagnosticSignHint",  text = "󰌵" },
     { name = "DiagnosticSignInfo",  text = "" },
   }
 
@@ -57,7 +57,7 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
   local wk = require("which-key")
-  opts = { nowait = true, buffer = buffnr, prefix = "g" }
+  opts = { nowait = true, buffer = bufnr, prefix = "g" }
 
   wk.register({
     D = {

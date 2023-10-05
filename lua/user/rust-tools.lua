@@ -49,6 +49,9 @@ M.config = function()
           lens = {
             enable = true,
           },
+          cargo = {
+            extraArgs = {},
+          },
           checkOnSave = {
             command = "clippy",
           }
