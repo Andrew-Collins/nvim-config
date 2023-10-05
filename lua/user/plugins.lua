@@ -54,14 +54,14 @@ return packer.startup(function(use)
         default = true,
         strict = true,
         override_by_filename = {
-              [".gitignore"] = {
+          [".gitignore"] = {
             icon = "",
             color = "#f1502f",
             name = "Gitignore"
           }
         },
         override_by_extension = {
-              ["log"] = {
+          ["log"] = {
             icon = "",
             color = "#81e043",
             name = "Log"
@@ -137,11 +137,22 @@ return packer.startup(function(use)
     require("user.gitsigns").config()
   end }
   use {
-    "simrat39/rust-tools.nvim",
+    "Andrew-Collins/rust-tools.nvim",
     config = function()
       require("user.rust-tools").config()
     end,
     ft = { "rust", "rs" },
+  }
+  use {
+    "tamago324/nlsp-settings.nvim", config = function()
+    require("nlspsettings").setup({
+      config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
+      local_settings_dir = ".nlsp-settings",
+      local_settings_root_markers_fallback = { '.git' },
+      append_default_schemas = true,
+      loader = 'json'
+    })
+  end
   }
   use {
     "rcarriga/nvim-dap-ui",
@@ -162,7 +173,7 @@ return packer.startup(function(use)
   use { "kylechui/nvim-surround", tag = "*", config = function()
     require("nvim-surround").setup({
       aliases = {
-            ["<"] = "t",
+        ["<"] = "t",
       },
     })
   end
