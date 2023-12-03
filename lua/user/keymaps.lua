@@ -52,7 +52,8 @@ M.set_dap_keymaps = function()
       E = { "<cmd>lua require('dap').set_exception_breakpoints()<cr>", "Break Exceptions" },
       e = { "<cmd>lua require('dapui').eval()<cr>", "Eval" },
       U = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" },
-      s = { "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustDebuggables]] else require'dap'.continue() end<CR>",
+      s = {
+        "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustLsp debuggables]] else require'dap'.continue() end<CR>",
         "Start" },
       R = { "<cmd>lua require('dap').run_last()<cr>", "Run Last" },
     },
@@ -86,12 +87,11 @@ M.set_rust_keymaps = function()
   local opts = { noremap = true, buffer = 0 }
   wk.register({
     ["<leader>l"] = {
-      -- a = { "<cmd>RustCodeAction<cr>", "Code Action" },
-      R = { "<cmd>RustRunnables<cr>", "Rust Runnables" },
-      m = { "<Cmd>RustExpandMacro<CR>", "Rust Expand Macro" },
-      h = { "<Cmd>RustHoverActions<CR>", "Rust Hover Actions" },
-      c = { "<Cmd>RustOpenCargo<CR>", "Open Cargo" },
-      -- H = { "<Cmd>RustToggleInlayHints<CR>", "Rust Toggle Inlay Hints" },
+      R = { "<cmd>RustLsp runnables<cr>", "Rust Runnables" },
+      m = { "<Cmd>RustLsp expandMacro<CR>", "Rust Expand Macro" },
+      -- h = { "<Cmd>RustLsp hoverActions<CR>", "Rust Hover Actions" },
+      c = { "<Cmd>RustLsp openCargo<CR>", "Open Cargo" },
+      -- e = { "<Cmd>RustLsp explainError<CR>", "Explain Error" },
     },
   }, opts)
 end

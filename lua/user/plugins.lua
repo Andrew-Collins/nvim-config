@@ -136,13 +136,12 @@ return packer.startup(function(use)
   use { "lewis6991/gitsigns.nvim", config = function()
     require("user.gitsigns").config()
   end }
-  use {
-    "Andrew-Collins/rust-tools.nvim",
+  -- use { "mrcjkb/rustaceanvim",
+  use { "~/projs/rustaceanvim/",
     config = function()
-      require("user.rust-tools").config()
+      require("user.rustaceanvim").config()
     end,
-    ft = { "rust", "rs" },
-  }
+    ft = { "rust" } }
   use {
     "tamago324/nlsp-settings.nvim", config = function()
     require("nlspsettings").setup({
@@ -154,6 +153,7 @@ return packer.startup(function(use)
     })
   end
   }
+  use { "mfussenegger/nvim-dap" }
   use {
     "rcarriga/nvim-dap-ui",
     config = function()
@@ -161,7 +161,6 @@ return packer.startup(function(use)
     end,
     ft = { "c", "cpp", "python", "rust", "go" },
     event = "BufReadPost",
-    requires = { "mfussenegger/nvim-dap" },
   }
   use {
     "phaazon/hop.nvim",
