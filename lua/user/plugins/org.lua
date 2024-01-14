@@ -1,0 +1,37 @@
+return { {
+  'nvim-orgmode/orgmode',
+  dependencies = {
+    { 'nvim-treesitter/nvim-treesitter', lazy = true },
+  },
+  event = 'VeryLazy',
+  config = function()
+    -- Load treesitter grammar for org
+    require('orgmode').setup_ts_grammar()
+
+    -- Setup treesitter
+    require('nvim-treesitter.configs').setup({
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'org' },
+      },
+      ensure_installed = { 'org' },
+    })
+
+    -- Setup orgmode
+    require('orgmode').setup({
+      org_agenda_files = '~/orgfiles/**/*',
+      org_default_notes_file = '~/orgfiles/refile.org',
+    })
+
+    -- Keymaps
+    local wk = require("which-key")
+    local opts = { noremap = true, silent = true }
+    wk.register({
+      ["<leader>o"] = {
+        name = "orgmode",
+        a = { "agenda" },
+        c = { "caption" },
+      },
+    }, opts)
+  end,
+} }

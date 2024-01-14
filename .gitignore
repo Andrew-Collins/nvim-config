@@ -40,4 +40,5 @@ luac.out
 *.hex
 
 
+*.json
 plugin/packer_compiled.lua
