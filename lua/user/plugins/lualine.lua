@@ -80,8 +80,25 @@ return
         lualine_a = { branch, diagnostics },
         lualine_b = { mode },
         lualine_c = {},
-        -- lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_x = { diff, spaces, "encoding", filetype },
+        lualine_x = {
+          function()
+            local ok, pomo = pcall(require, "pomo")
+            if not ok then
+              return ""
+            end
+
+            local timer = pomo.get_first_to_finish()
+            if timer == nil then
+              return ""
+            end
+
+            return "󰄉 " .. tostring(timer)
+          end,
+          "encoding",
+          "fileformat",
+          "filetype",
+        },
+        -- lualine_x = { diff, spaces, "encoding", filetype },
         lualine_y = { location },
         lualine_z = { progress },
       },

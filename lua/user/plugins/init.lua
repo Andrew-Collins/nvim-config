@@ -74,6 +74,20 @@ return {
     },
     ft = { "fugitive" }
   },
+  {
+    'Jarvismkennedy/git-auto-sync.nvim',
+    opts = {
+      {
+        "~/orgfiles",
+        auto_pull = true,
+        auto_push = true,
+        auto_commit = true,
+        prompt = true,
+        name = "notes"
+      },
+    },
+    lazy = false,
+  },
 
   -- Plugin files that require a module
   require("user.plugins.modules.project").config,
