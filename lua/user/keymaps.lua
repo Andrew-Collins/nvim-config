@@ -34,10 +34,10 @@ keymap("", "<Space>", "<Nop>", opts)
 -- keymap("n", "<C-k>", "<C-w>k", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", opts)
-keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", opts)
-keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", opts)
-keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", opts)
+-- keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", opts)
+-- keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", opts)
+-- keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", opts)
+-- keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -58,6 +58,6 @@ local wk_mappings = {
     u = { "<cmd>Lazy update<cr>", "Update" },
   },
 }
-wk.register(wk_mappings, wk_opts)
+wk.register(wk_mappings, M.wk_opts)
 
 return M
