@@ -26,15 +26,5 @@ if not status_ok then
   return
 end
 
--- Keymaps
-local wk = require("which-key")
-local wk_mappings = {
-  l = {
-    name = "Lazy",
-    s = { "<cmd>Lazy sync<cr>", "Sync" },
-    u = { "<cmd>Lazy update<cr>", "Update" },
-  },
-}
-wk.register(wk_mappings, require("user.keymaps").wk_opts)
 
 return lazy.setup("user/plugins")

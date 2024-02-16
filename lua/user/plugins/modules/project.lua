@@ -1,6 +1,6 @@
 local M = {}
-local fzf_lua = require("fzf-lua")
 M.fzf_proj = function()
+  local fzf_lua = require("fzf-lua")
   local history = require("project_nvim.utils.history")
   fzf_lua.fzf_exec(function(cb)
       local results = history.get_recent_projects()

@@ -18,8 +18,6 @@ M.wk_opts = {
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -52,6 +50,14 @@ local wk_mappings = {
 }
 wk.register(wk_mappings, M.wk_opts)
 
-
+-- Lazy
+local wk_mappings = {
+  l = {
+    name = "Lazy",
+    s = { "<cmd>Lazy sync<cr>", "Sync" },
+    u = { "<cmd>Lazy update<cr>", "Update" },
+  },
+}
+wk.register(wk_mappings, wk_opts)
 
 return M
