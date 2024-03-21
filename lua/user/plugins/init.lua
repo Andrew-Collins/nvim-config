@@ -53,6 +53,7 @@ return {
 
   -- DAP
   "mfussenegger/nvim-dap",
+  "nvim-neotest/nvim-nio",
 
   -- Git
   {

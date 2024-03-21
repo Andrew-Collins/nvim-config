@@ -1,7 +1,7 @@
 return
-{ {
+{
   "rcarriga/nvim-dap-ui",
-  dependencies = { "mfussenegger/nvim-dap" },
+  dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
   config = function()
     local status_ok, ui = pcall(require, "dapui")
     if not status_ok then
@@ -36,4 +36,4 @@ return
   end,
   ft = { "c", "cpp", "python", "rust", "go" },
   event = "BufReadPost",
-} }
+}
