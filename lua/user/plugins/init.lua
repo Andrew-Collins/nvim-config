@@ -55,6 +55,11 @@ return {
   "mfussenegger/nvim-dap",
   "nvim-neotest/nvim-nio",
 
+  -- Session
+  {
+    "tpope/vim-obsession",
+  },
+
   -- Git
   {
     "tpope/vim-fugitive",
@@ -75,20 +80,20 @@ return {
     },
     ft = { "fugitive" }
   },
-  {
-    'Jarvismkennedy/git-auto-sync.nvim',
-    opts = {
-      {
-        "~/orgfiles",
-        auto_pull = true,
-        auto_push = true,
-        auto_commit = true,
-        prompt = true,
-        name = "notes"
-      },
-    },
-    lazy = false,
-  },
+  -- {
+  --   'Jarvismkennedy/git-auto-sync.nvim',
+  --   opts = {
+  --     {
+  --       "~/orgfiles",
+  --       auto_pull = true,
+  --       auto_push = true,
+  --       auto_commit = true,
+  --       prompt = true,
+  --       name = "notes"
+  --     },
+  --   },
+  --   lazy = false,
+  -- },
 
   -- Plugin files that require a module
   require("user.plugins.modules.project").config,

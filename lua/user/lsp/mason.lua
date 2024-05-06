@@ -11,6 +11,7 @@ local servers = {
   -- "bashls",
   -- "jsonls",
   -- "yamlls",
+  "arduino_language_server",
 }
 
 local settings = {

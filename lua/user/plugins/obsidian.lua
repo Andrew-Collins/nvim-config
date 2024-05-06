@@ -27,7 +27,7 @@ return {
       -- },
       {
         name = "work",
-        path = "~/work/gmelon/obsidian/hw-team/",
+        path = "/tmp/gmelon/obsidian/hw-team/",
         overrides = {
           notes_subdir = "../ac_notes",
         },
