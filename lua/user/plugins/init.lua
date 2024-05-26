@@ -31,7 +31,7 @@ return {
   -- use { "AlessandroYorba/Alduin" }
 
   -- LSP
-  "neovim/nvim-lspconfig", -- enable LSP
+  { "neovim/nvim-lspconfig", commit = "cee94b2" }, -- enable LSP
   "williamboman/mason-lspconfig.nvim",
 
   -- Package Management

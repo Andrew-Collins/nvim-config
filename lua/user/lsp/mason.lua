@@ -8,6 +8,7 @@ local servers = {
   "pyright",
   "gopls",
   "taplo",
+  -- "gitlab_ci_ls",
   -- "bashls",
   -- "jsonls",
   -- "yamlls",

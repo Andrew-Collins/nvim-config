@@ -1,5 +1,3 @@
-local util = require "pomo.util"
-
 local BellNotifier = {}
 
 BellNotifier.new = function(timer, opts)
@@ -26,11 +24,12 @@ BellNotifier._update = function(self, text, level, timeout)
       "Timer #%d, %s, %s%s",
       self.timer.id,
       self.timer.name,
-      util.format_time(self.timer.time_limit),
+      require("pomo").util.format_time(self.timer.time_limit),
       repetitions_str
     )
   else
-    title = string.format("Timer #%d, %s%s", self.timer.id, util.format_time(self.timer.time_limit), repetitions_str)
+    title = string.format("Timer #%d, %s%s", self.timer.id, require("pomo").util.format_time(self.timer.time_limit),
+      repetitions_str)
   end
 
   if text ~= nil then
@@ -67,7 +66,7 @@ BellNotifier.tick = function(self, time_left)
       string.format(
         " %s  %s left...%s",
         self.text_icon,
-        util.format_time(time_left),
+        require("pomo").util.format_time(time_left),
         self.timer.paused and " (paused)" or ""
       ),
       vim.log.levels.INFO,
@@ -107,7 +106,7 @@ BellNotifier.show = function(self)
   end
 end
 
-return {
+return { {
   "epwalsh/pomo.nvim",
   version = "*", -- Recommended, use latest release instead of latest commit
   lazy = true,
@@ -129,19 +128,16 @@ return {
       --     -- text_icon = "⏱️",
       --   },
       -- },
-
-
       -- TODO: write terminal bell function
       { init = BellNotifier.new, opts = {} },
     },
-
-    -- -- Override the notifiers for specific timer names.
-    -- timers = {
-    --   -- For example, use only the "System" notifier when you create a timer called "Break",
-    --   -- e.g. ':TimerStart 2m Break'.
-    --   Break = {
-    --     { name = "System" },
+    -- Override the notifiers for specific timer names.
+    --   timers = {
+    --     -- For example, use only the "System" notifier when you create a timer called "Break",
+    --     -- e.g. ':TimerStart 2m Break'.
+    --     Break = {
+    --       { name = "System" },
+    --     },
     --   },
-    -- },
-  },
-}
+  }
+} }

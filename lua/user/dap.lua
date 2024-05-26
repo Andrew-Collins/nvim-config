@@ -1,6 +1,7 @@
 local dap = require('dap')
 local extension_path = os.getenv("HOME") .. '/.local/share/nvim/mason/packages/codelldb/extension/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
+local cpptools_path = os.getenv("HOME") .. '/.local/share/nvim/mason/bin/' .. 'OpenDebugAD7'
 
 -- Keymaps
 local wk = require("which-key")
@@ -27,6 +28,12 @@ wk.register({
 }, opts)
 
 -- Adapters
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = cpptools_path,
+  -- command = "/home/ac/.local/share/nvim/mason/bin/OpenDebugAD7",
+}
 dap.adapters.lldb = {
   type = 'server',
   port = "${port}",
