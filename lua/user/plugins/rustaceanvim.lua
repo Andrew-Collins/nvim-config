@@ -24,7 +24,7 @@ return
       server = {
         on_attach = function(client, bufnr)
           require("user.lsp.handlers").on_attach(client, bufnr)
-          require("user.keymaps").set_rust_keymaps()
+          -- require("user.keymaps").set_rust_keymaps()
         end,
         settings = function(project_root)
           local ra = require('rustaceanvim.config.server')
@@ -62,6 +62,7 @@ return
       ["<leader>l"] = {
         R = { "<cmd>RustLsp runnables<cr>", "Rust Runnables" },
         m = { "<Cmd>RustLsp expandMacro<CR>", "Rust Expand Macro" },
+        t = { "<Cmd>RustLsp testables<CR>", "Rust Testables" },
         -- h = { "<Cmd>RustLsp hoverActions<CR>", "Rust Hover Actions" },
         c = { "<Cmd>RustLsp openCargo<CR>", "Open Cargo" },
         -- e = { "<Cmd>RustLsp explainError<CR>", "Explain Error" },

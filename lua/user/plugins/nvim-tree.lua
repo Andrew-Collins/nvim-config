@@ -13,9 +13,10 @@ return
     })
     -- Keymaps
     local wk = require("which-key")
-    local wk_mappings = {
-      ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+    local wk_mappings =
+    {
+      { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer", nowait = true, remap = false },
     }
-    wk.register(wk_mappings, require("user.keymaps").wk_opts)
+    wk.add(wk_mappings)
   end
 } }

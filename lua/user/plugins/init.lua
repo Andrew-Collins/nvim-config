@@ -31,11 +31,11 @@ return {
   -- use { "AlessandroYorba/Alduin" }
 
   -- LSP
-  { "neovim/nvim-lspconfig", commit = "cee94b2" }, -- enable LSP
+  { "neovim/nvim-lspconfig",   commit = "cee94b2" }, -- enable LSP
   "williamboman/mason-lspconfig.nvim",
 
   -- Package Management
-  "williamboman/mason.nvim", -- simple to use language server installer
+  { "williamboman/mason.nvim", version = "v1.8.3" }, -- simple to use language server installer
 
   -- Settings Management
   {
@@ -95,6 +95,13 @@ return {
   --   lazy = false,
   -- },
 
+  --- Markdown
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
   -- Plugin files that require a module
   require("user.plugins.modules.project").config,
 }

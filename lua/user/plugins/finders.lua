@@ -114,14 +114,12 @@ return {
     requires = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       local wk = require("which-key")
-      local wk_mappings = {
-        ["f"] = {
-          "<cmd>lua require('fzf-lua').git_files()<cr>",
-          "Find files",
-        },
-        ["F"] = { "<cmd>lua require('fzf-lua').live_grep_native()<cr>", "Find Text" },
+      local wk_mappings =
+      {
+        { "<leader>F", "<cmd>lua require('fzf-lua').live_grep_native()<cr>", desc = "Find Text",  nowait = true, remap = false },
+        { "<leader>f", "<cmd>lua require('fzf-lua').git_files()<cr>",        desc = "Find files", nowait = true, remap = false },
       }
-      wk.register(wk_mappings, require("user.keymaps").wk_opts)
+      wk.add(wk_mappings)
     end
   },
 }

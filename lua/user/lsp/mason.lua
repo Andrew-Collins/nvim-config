@@ -9,6 +9,8 @@ local servers = {
   "gopls",
   "taplo",
   -- "gitlab_ci_ls",
+  "eslint",
+  "arduino_language_server",
   -- "bashls",
   -- "jsonls",
   -- "yamlls",

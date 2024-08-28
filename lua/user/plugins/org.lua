@@ -70,12 +70,12 @@ return { {
     -- Keymaps
     local wk = require("which-key")
     local opts = { noremap = true, silent = true }
-    wk.register({
-      ["<leader>o"] = {
-        name = "orgmode",
-        a = { "agenda" },
-        c = { "caption" },
-      },
-    }, opts)
+    wk.add(
+      {
+        { "<leader>o",  group = "orgmode", remap = false },
+        { "<leader>oa", desc = "agenda",   remap = false },
+        { "<leader>oc", desc = "caption",  remap = false },
+      }
+    )
   end,
 } }

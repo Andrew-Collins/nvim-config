@@ -13,9 +13,9 @@ M.setup = function()
   local signs = {
 
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "󰌵" },
-    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "󰌵" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -57,21 +57,24 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
   local wk = require("which-key")
-  opts = { nowait = true, buffer = bufnr, prefix = "g" }
 
-  wk.register({
-    D = {
+  wk.add({
+    {
+      "gD",
       "<cmd>lua vim.lsp.buf.declaration()<CR>",
-      "LSP Goto Declaration",
+      desc = "LSP Goto Declaration",
+      nowait = true,
     },
-    d = {
+    {
+      "gd",
       "<cmd>lua vim.lsp.buf.definition()<CR>",
-      "LSP Goto Definition",
+      desc = "LSP Goto Definition",
+      nowait = true,
     },
-    I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "LSP GoTo Implementation" },
-    l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    r = { "<cmd>lua vim.lsp.buf.references()<CR>", "LSP References" },
-  }, opts)
+    { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "LSP GoTo Implementation", nowait = true },
+    { "gl", "<cmd>lua vim.lsp.codelens.run()<cr>",       desc = "CodeLens Action",         nowait = true },
+    { "gr", "<cmd>lua vim.lsp.buf.references()<CR>",     desc = "LSP References",          nowait = true },
+  })
 
   -- keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   -- keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)

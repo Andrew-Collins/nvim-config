@@ -73,9 +73,9 @@ M.config = {
     -- Keymaps
     local wk = require("which-key")
     local wk_mappings = {
-      ["P"] = { "<cmd>lua require('user.plugins.modules.project').fzf_proj()<CR>", "Projects" },
+      { "<leader>P", "<cmd>lua require('user.plugins.modules.project').fzf_proj()<CR>", desc = "Projects", nowait = true, remap = false },
     }
-    wk.register(wk_mappings, require("user.keymaps").wk_opts)
+    wk.add(wk_mappings)
   end
 }
 return M

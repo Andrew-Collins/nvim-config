@@ -6,33 +6,28 @@ local cpptools_path = os.getenv("HOME") .. '/.local/share/nvim/mason/bin/' .. 'O
 -- Keymaps
 local wk = require("which-key")
 local opts = { prefix = "<leader>", nowait = true }
-wk.register({
-  ["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" },
-  d = {
-    name = "+DAP",
-    b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-    c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
-    o = { "<cmd>lua require('dap').step_over()<cr>", "Step Over" },
-    i = { "<cmd>lua require('dap').step_into()<cr>", "Step Into" },
-    O = { "<cmd>lua require('dap').step_out()<cr>", "Step Out" },
-    B = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Set Breakpoint" },
-    l = { "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>", "Log Point" },
-    E = { "<cmd>lua require('dap').set_exception_breakpoints()<cr>", "Break Exceptions" },
-    e = { "<cmd>lua require('dapui').eval()<cr>", "Eval" },
-    U = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" },
-    s = {
-      "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustLsp debuggables]] else require'dap'.continue() end<CR>",
-      "Start" },
-    R = { "<cmd>lua require('dap').run_last()<cr>", "Run Last" },
-  },
-}, opts)
+wk.add({
+  { "<leader>?", "<cmd>Cheat<CR>", desc = " Cheat.sh", nowait = true },
+  { "<leader>d", group = "DAP", nowait = true },
+  { "<leader>dB", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", desc = "Set Breakpoint", nowait = true },
+  { "<leader>dE", "<cmd>lua require('dap').set_exception_breakpoints()<cr>", desc = "Break Exceptions", nowait = true },
+  { "<leader>dO", "<cmd>lua require('dap').step_out()<cr>", desc = "Step Out", nowait = true },
+  { "<leader>dR", "<cmd>lua require('dap').run_last()<cr>", desc = "Run Last", nowait = true },
+  { "<leader>dU", "<cmd>lua require('dapui').toggle()<cr>", desc = "Toggle UI", nowait = true },
+  { "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle Breakpoint", nowait = true },
+  { "<leader>dc", "<cmd>lua require('dap').continue()<cr>", desc = "Continue", nowait = true },
+  { "<leader>de", "<cmd>lua require('dapui').eval()<cr>", desc = "Eval", nowait = true },
+  { "<leader>di", "<cmd>lua require('dap').step_into()<cr>", desc = "Step Into", nowait = true },
+  { "<leader>dl", "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>", desc = "Log Point", nowait = true },
+  { "<leader>do", "<cmd>lua require('dap').step_over()<cr>", desc = "Step Over", nowait = true },
+  { "<leader>ds", "<cmd>lua if vim.bo.filetype == 'rust' then vim.cmd[[RustLsp debuggables]] else require'dap'.continue() end<CR>", desc = "Start", nowait = true },
+})
 
 -- Adapters
 dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',
   command = cpptools_path,
-  -- command = "/home/ac/.local/share/nvim/mason/bin/OpenDebugAD7",
 }
 dap.adapters.lldb = {
   type = 'server',
@@ -54,6 +49,7 @@ dap.adapters["probe-rs-debug"] = {
 -- Load configs from .vscode file
 local type_table = {}
 type_table["lldb"] = { "rust", "c", "cpp" }
+type_table["cppdbg"] = { "rust", "c", "cpp" }
 require('dap.ext.vscode').load_launchjs(nil, type_table)
 
 

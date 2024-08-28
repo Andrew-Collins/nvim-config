@@ -45,19 +45,19 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 
 local wk_mappings = {
-  ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  { "<leader>T", "<cmd>terminal<CR>", desc = "Open Terminal", nowait = true, remap = false },
+  { "<leader>c", "<cmd>Bdelete!<CR>", desc = "Close Buffer",  nowait = true, remap = false },
+  { "<leader>w", "<cmd>w!<CR>",       desc = "Save",          nowait = true, remap = false },
 }
-wk.register(wk_mappings, M.wk_opts)
+
+wk.add(wk_mappings)
 
 -- Lazy
 local wk_mappings = {
-  l = {
-    name = "Lazy",
-    s = { "<cmd>Lazy sync<cr>", "Sync" },
-    u = { "<cmd>Lazy update<cr>", "Update" },
-  },
+  { "<leader>L",  group = "Lazy",         nowait = true,   remap = false },
+  { "<leader>Ls", "<cmd>Lazy sync<cr>",   desc = "Sync",   nowait = true, remap = false },
+  { "<leader>Lu", "<cmd>Lazy update<cr>", desc = "Update", nowait = true, remap = false },
 }
-wk.register(wk_mappings, M.wk_opts)
+wk.add(wk_mappings)
 
 return M
