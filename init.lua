@@ -5,9 +5,9 @@ vim.loader.enable()
 
 require "user.options"
 require "user.autocommands"
+require "user.lazy"
 require "user.colorscheme"
 require "user.lsp"
-require "user.lazy"
 require "user.keymaps"
 -- require "user.cmp"
 -- require "user.telescope"
