@@ -83,39 +83,23 @@ local function lsp_keymaps(bufnr)
   -- keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 
   opts.prefix = "<leader>"
-  wk.register({
-    l = {
-      name = "LSP",
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-      d = {
-        "<cmd>Telescope diagnostics bufnr=0<cr>",
-        "Document Diagnostics",
-      },
-      w = {
-        "<cmd>Telescope diagnostics<cr>",
-        "Workspace Diagnostics",
-      },
-      f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-      i = { "<cmd>LspInfo<cr>", "Info" },
-      I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-      j = {
-        "<cmd>lua vim.diagnostic.goto_next()<CR>",
-        "Next Diagnostic",
-      },
-      k = {
-        "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-        "Prev Diagnostic",
-      },
-      l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-      q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-      r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-      s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-      S = {
-        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-        "Workspace Symbols",
-      },
-    },
-  }, opts)
+  wk.add({
+    { "<leader>l",  group = "LSP",                                      nowait = true },
+    { "<leader>lI", "<cmd>LspInstallInfo<cr>",                          desc = "Installer Info",        nowait = true },
+    { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols",     nowait = true },
+    { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",           desc = "Code Action",           nowait = true },
+    { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>",           desc = "Document Diagnostics",  nowait = true },
+    { "<leader>lf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",      desc = "Format",                nowait = true },
+    { "<leader>li", "<cmd>LspInfo<cr>",                                 desc = "Info",                  nowait = true },
+    { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<CR>",          desc = "Next Diagnostic",       nowait = true },
+    { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>",          desc = "Prev Diagnostic",       nowait = true },
+    { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",              desc = "CodeLens Action",       nowait = true },
+    { "<leader>lo", "<cmd>lua vim.diagnostic.open_float()<CR>",         desc = "Next Diagnostic",       nowait = true },
+    { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",         desc = "Quickfix",              nowait = true },
+    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                desc = "Rename",                nowait = true },
+    { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Document Symbols",      nowait = true },
+    { "<leader>lw", "<cmd>Telescope diagnostics<cr>",                   desc = "Workspace Diagnostics", nowait = true },
+  })
 end
 
 M.on_attach = function(client, bufnr)
