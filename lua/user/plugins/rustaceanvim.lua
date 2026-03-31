@@ -22,10 +22,9 @@ return
         },
       },
       server = {
-        on_attach = function(client, bufnr)
-          require("user.lsp.handlers").on_attach(client, bufnr)
-          -- require("user.keymaps").set_rust_keymaps()
-        end,
+        -- on_attach = function(client, bufnr)
+        --   require("user.lsp.handlers").on_attach(client, bufnr)
+        -- end,
         settings = function(project_root)
           local ra = require('rustaceanvim.config.server')
           local res = ra.load_rust_analyzer_settings(project_root, {
@@ -57,17 +56,14 @@ return
     }
     -- Keymaps
     local wk = require("which-key")
-    local opts = { noremap = true, buffer = 0 }
-    wk.register({
-      ["<leader>l"] = {
-        R = { "<cmd>RustLsp runnables<cr>", "Rust Runnables" },
-        m = { "<Cmd>RustLsp expandMacro<CR>", "Rust Expand Macro" },
-        t = { "<Cmd>RustLsp testables<CR>", "Rust Testables" },
-        -- h = { "<Cmd>RustLsp hoverActions<CR>", "Rust Hover Actions" },
-        c = { "<Cmd>RustLsp openCargo<CR>", "Open Cargo" },
-        -- e = { "<Cmd>RustLsp explainError<CR>", "Explain Error" },
-      },
-    }, opts)
+    local wk_mappings = {
+      {
+        { "<leader>lR", "<cmd>RustLsp runnables<cr>",   buffer = 0, desc = "Rust Runnables",    remap = false },
+        { "<leader>lc", "<Cmd>RustLsp openCargo<CR>",   buffer = 0, desc = "Open Cargo",        remap = false },
+        { "<leader>lm", "<Cmd>RustLsp expandMacro<CR>", buffer = 0, desc = "Rust Expand Macro", remap = false },
+        { "<leader>lt", "<Cmd>RustLsp testables<CR>",   buffer = 0, desc = "Rust Testables",    remap = false },
+      } }
+    wk.add(wk_mappings)
   end,
   ft = { "rust" }
 } }

@@ -42,34 +42,78 @@ return { {
     vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
     local Terminal = require("toggleterm.terminal").Terminal
-    local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
+    local lazygit = Terminal:new({
+      cmd = "lazygit",
+      hidden = true,
+      on_open =
+          function(term)
+            require("which-key").add({
+              { "<leader>tt", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", desc = "Toggle", nowait = true, remap = true, buffer = term.bufnr },
+            })
+          end
+      ,
+    })
     function _LAZYGIT_TOGGLE()
       lazygit:toggle()
     end
 
-    local node = Terminal:new({ cmd = "node", hidden = true })
-
+    local node = Terminal:new({
+      cmd = "node",
+      hidden = true,
+      on_open =
+          function(term)
+            require("which-key").add({
+              { "<leader>tt", "<cmd>lua _NODE_TOGGLE()<cr>", desc = "Toggle", nowait = true, remap = true, buffer = term.bufnr },
+            })
+          end
+      ,
+    })
     function _NODE_TOGGLE()
       node:toggle()
     end
 
-    local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
-
-    function _NCDU_TOGGLE()
-      ncdu:toggle()
-    end
-
-    local htop = Terminal:new({ cmd = "htop", hidden = true })
-
+    local htop = Terminal:new({
+      cmd = "htop",
+      hidden = true,
+      on_open =
+          function(term)
+            require("which-key").add({
+              { "<leader>tt", "<cmd>lua _HTOP_TOGGLE()<cr>", desc = "Toggle", nowait = true, remap = true, buffer = term.bufnr },
+            })
+          end
+      ,
+    })
     function _HTOP_TOGGLE()
       htop:toggle()
     end
 
-    local python = Terminal:new({ cmd = "python", hidden = true })
-
+    local python = Terminal:new({
+      cmd = "python",
+      hidden = true,
+      on_open =
+          function(term)
+            require("which-key").add({
+              { "<leader>tt", "<cmd>lua _PYTHON_TOGGLE()<cr>", desc = "Toggle", nowait = true, remap = true, buffer = term.bufnr },
+            })
+          end
+      ,
+    })
     function _PYTHON_TOGGLE()
       python:toggle()
     end
+
+    local wk = require("which-key")
+
+    -- Terminal
+    local wk_mappings = {
+      { "<leader>t",  group = "Terminal",               nowait = true,                   remap = false },
+      { "<leader>tt", "<cmd>ToggleTerm<cr>",            desc = "Open Floating Terminal", nowait = true, remap = false },
+      { "<leader>tl", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", desc = "Open Floating lazygit",  nowait = true, remap = false },
+      { "<leader>tn", "<cmd>lua _NODE_TOGGLE()<cr>",    desc = "Open Floating node",     nowait = true, remap = false },
+      { "<leader>th", "<cmd>lua _HTOP_TOGGLE()<cr>",    desc = "Open Floating htop",     nowait = true, remap = false },
+      { "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<cr>",  desc = "Open Floating python",   nowait = true, remap = false },
+    }
+    wk.add(wk_mappings)
   end
 } }

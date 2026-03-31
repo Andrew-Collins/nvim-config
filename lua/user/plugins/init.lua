@@ -31,11 +31,17 @@ return {
   -- use { "AlessandroYorba/Alduin" }
 
   -- LSP
-  { "neovim/nvim-lspconfig",   commit = "cee94b2" }, -- enable LSP
-  "williamboman/mason-lspconfig.nvim",
-
-  -- Package Management
-  { "williamboman/mason.nvim", version = "v1.8.3" }, -- simple to use language server installer
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = require("user.lsp.mason").servers,
+    },
+    dependencies = {
+      -- Package Management
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
 
   -- Settings Management
   {
@@ -102,6 +108,19 @@ return {
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
   },
+
+  --- Typescript
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+    config = function()
+      require("typescript-tools").setup {
+        on_attach = require("user.lsp.handlers").on_attach,
+      }
+    end
+  },
+
   -- Plugin files that require a module
   require("user.plugins.modules.project").config,
 }

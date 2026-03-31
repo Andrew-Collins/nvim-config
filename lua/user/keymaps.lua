@@ -1,8 +1,6 @@
 local M = {}
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 local wk = require("which-key")
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -44,13 +42,13 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 
+-- Buffers
 local wk_mappings = {
-  { "<leader>T", "<cmd>terminal<CR>", desc = "Open Terminal", nowait = true, remap = false },
-  { "<leader>c", "<cmd>Bdelete!<CR>", desc = "Close Buffer",  nowait = true, remap = false },
-  { "<leader>w", "<cmd>w!<CR>",       desc = "Save",          nowait = true, remap = false },
+  { "<leader>c", "<cmd>Bdelete!<CR>", desc = "Close Buffer", nowait = true, remap = false },
+  { "<leader>w", "<cmd>w!<CR>",       desc = "Save",         nowait = true, remap = false },
 }
-
 wk.add(wk_mappings)
+
 
 -- Lazy
 local wk_mappings = {

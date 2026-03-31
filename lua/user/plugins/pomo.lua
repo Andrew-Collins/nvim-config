@@ -131,6 +131,12 @@ return { {
       -- TODO: write terminal bell function
       { init = BellNotifier.new, opts = {} },
     },
+    sessions = {
+      work = {
+        { name = "Work",  duration = "20m" },
+        { name = "Break", duration = "10m" },
+      },
+    },
     -- Override the notifiers for specific timer names.
     --   timers = {
     --     -- For example, use only the "System" notifier when you create a timer called "Break",

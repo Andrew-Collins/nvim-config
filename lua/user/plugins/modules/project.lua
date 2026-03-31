@@ -13,7 +13,7 @@ M.fzf_proj = function()
       actions = {
         ['default'] = {
           function(selected)
-            fzf_lua.files({ cwd = selected[1] })
+            fzf_lua.files({ cwd = selected[1], multiprocess = false })
           end,
         },
         ['ctrl-d'] = {
