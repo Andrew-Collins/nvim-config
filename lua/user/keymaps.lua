@@ -3,7 +3,8 @@ local opts = { noremap = true, silent = true }
 
 local wk = require("which-key")
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 M.wk_opts = {
   mode = "n",     -- NORMAL mode
@@ -38,8 +39,15 @@ keymap("", "<Space>", "<Nop>", opts)
 -- keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
+keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
+-- keymap("n", "<S-m>", ":lua require('user.keymaps').buffer_jump()", opts)
+keymap("n", "<S-m>", function()
+  local n = vim.fn.input("Enter Buffer Num: ");
+  -- vim.api.nvim_command(":BufferLineGoToBuffer 1")
+  vim.api.nvim_command(":BufferLineGoToBuffer " .. n)
+  -- return "BufferLineGoToBuffer" .. n .. "<CR>"
+end, opts)
 
 
 -- Buffers

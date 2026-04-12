@@ -12,6 +12,7 @@ M.servers = {
   "taplo",
   -- "gitlab_ci_ls",
   -- "eslint",
+  "eslint_d",
   -- "ts_ls",
   -- "arduino_language_server",
   -- "bashls",

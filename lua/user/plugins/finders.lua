@@ -116,8 +116,9 @@ return {
       local wk = require("which-key")
       local wk_mappings =
       {
-        { "<leader>F", "<cmd>FzfLua live_grep_native<cr>",             desc = "Find Text",  nowait = true, remap = false },
-        { "<leader>f", "<cmd>FzfLua git_files multiprocess=false<cr>", desc = "Find files", nowait = true, remap = false },
+        { "<leader>F", "<cmd>FzfLua live_grep_native<cr>",             desc = "Find Text",    nowait = true, remap = false },
+        { "<leader>f", "<cmd>FzfLua git_files multiprocess=false<cr>", desc = "Find Files",   nowait = true, remap = false },
+        { "<leader>b", "<cmd>FzfLua buffers<cr>",                      desc = "Find Buffers", nowait = true, remap = false },
       }
       wk.add(wk_mappings)
     end
